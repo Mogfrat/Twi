@@ -1,4 +1,5 @@
 import tweepy
+import discord
 token_didi = ""
 consumer_key = ""
 consumer_secret = ""
@@ -11,6 +12,8 @@ bearer = ''
 
 #Mogfrat
 #chapitre 
+
+
 
 def home_time():
     public_tweets = api.home_timeline()
@@ -25,6 +28,7 @@ def see_tweet_by_specific_user():
     for twb in specific_user_timeline:
         print(twb.text)
     home()
+    
 
 
 def post_tweet():
@@ -75,11 +79,22 @@ def update_profile():
     home()
 
 
+def trends_place():
+    loc = input("Local \n")
+    trends = api.trends_place(loc)
+    for trend in trends:
+        print(trend)
+
+
+def place_val():
+    place_val = api.trends_available()
+    print(place_val)
+
 
 def autre():
     choix = "b"
     while choix == "b":
-        choix = int(input("What do u want to do ? \n 1.Update profile pic \n 2.Update background pic \n 3.Update profile \n"))
+        choix = int(input("What do u want to do ? \n 1.Update profile pic \n 2.Update background pic \n 3.Update profile \n 4.Value of place ( Print a Yahoo! Where On Earth ID of place) \n 5.Trends place(Enter Yahoo! Where On Earth ID for see trends about place)\n"))
         if choix == "":
             print("Your answer don't be empty")
             choix = "a"
@@ -93,12 +108,10 @@ def autre():
         elif choix == 3:
             update_profile()
         elif choix == 4:
-            verif_credential()
+            place_val()
         elif choix == 5:
-            post_tweet()
-        elif choix == 6:
-            update_pic_profile()
-
+            trends_place()
+        
 
 def home():
     choix = "a"
